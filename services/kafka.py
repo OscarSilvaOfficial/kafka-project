@@ -11,13 +11,12 @@ def show_topics():
     topicos = set_to_json(consumer.topics())
     return topicos
     
-def create_topic(topic, value):
+def create_topic(topic):
     producer = kafka.KafkaProducer(bootstrap_servers='localhost:9092')
 
     try:
-        producer.send('topico1', b'topico')
+        producer.send('str(topic)', b'kafka')
+        print(topic)
     except Exception as e:
-        print(e)
-        return 'Erro na criação do tópico'
-
+        raise e
     return 'Tópico criado' 
